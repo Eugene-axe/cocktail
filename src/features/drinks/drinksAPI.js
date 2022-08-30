@@ -10,11 +10,13 @@ export const getDrinksByFirstLetter = async (letter = "") => {
   const result = await API.get(`search.php?f=${letter}`);
   return result.data.drinks;
 };
+export const getDrinksByIngredient = async (ingredient = "") => {
+  const result = await API.get(`filter.php?i=${ingredient}`);
+  return result.data.drinks;
+};
 
 export const getDrinkById = async (id = "") => {
-  console.log("kkk");
   const result = await API.get(`lookup.php?i=${id}`);
-  console.log(result.data.drinks[0]);
   return result.data.drinks[0];
 };
 

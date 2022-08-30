@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   getDrinkById,
   getDrinksByFirstLetter,
+  getDrinksByIngredient,
   getDrinksByName,
   getRandomDrink,
 } from "./drinksAPI";
@@ -18,6 +19,14 @@ export const fetchDrinksByFirstLetter = createAsyncThunk(
   "drinks/fetchDrinksByFirstLetter",
   async (letter) => {
     const response = await getDrinksByFirstLetter(letter);
+    return response;
+  }
+);
+
+export const fetchDrinksByIngredient = createAsyncThunk(
+  "drinks/fetchDrinksByIngredient",
+  async (ingredient) => {
+    const response = await getDrinksByIngredient(ingredient);
     return response;
   }
 );
@@ -53,6 +62,9 @@ const drinksSlice = createSlice({
       .addCase(fetchDrinksByFirstLetter.fulfilled, (state, action) => {
         state.drinks = action.payload;
       })
+      .addCase(fetchDrinksByIngredient.fulfilled, (state, action) => {
+        state.drinks = action.payload;
+      })
       .addCase(fetchDrinkById.fulfilled, (state, action) => {
         state.drink = action.payload;
       })
@@ -63,3 +75,7 @@ const drinksSlice = createSlice({
 });
 
 export default drinksSlice.reducer;
+
+export const drinks = (state) => state.drinks.drinks;
+export const drink = (state) => state.drinks.drink;
+export const drinkStatus = (state) => state.drinks.status;
