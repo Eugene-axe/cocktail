@@ -6,17 +6,17 @@ import { RecommendationBlock } from "../components/RecommendationBlock";
 
 const MainPage = () => {
   return (
-    <Main>
+    <Container>
       <GreetingsHeader />
       <MainNav />
       <RecommendationBlock />
-    </Main>
+    </Container>
   );
 };
 
 export default MainPage;
 
-const Main = styled.main`
+const Container = styled.article`
   background-color: darkslateblue;
   flex: 1;
   display: grid;

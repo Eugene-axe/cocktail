@@ -6,6 +6,8 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import MainPage from "./routes/MainPage";
 import "./index.css";
+import { AlphabetPage } from "./routes/AlphabetPage";
+import { DrinksSearchResult } from "./routes/DrinksSearchResult";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -17,6 +19,8 @@ root.render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<MainPage />} />
+            <Route path="/alphabet" element={<AlphabetPage />} />
+            <Route path="/alphabet/:letter" element={<DrinksSearchResult />} />
           </Route>
         </Routes>
       </HashRouter>

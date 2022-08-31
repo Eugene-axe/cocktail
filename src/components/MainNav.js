@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { BlockLink } from "../assets/styled/fragments";
 
 export const MainNav = () => {
   return (
     <Nav>
       <NavItem>
-        <Link to="alpabet">Поиск по алфавиту</Link>
+        <Link to="/alphabet">Поиск по алфавиту</Link>
       </NavItem>
       <NavItem>
         <Link to="categories">Категории</Link>
@@ -37,17 +38,5 @@ const Nav = styled.nav`
 `;
 
 const NavItem = styled.div`
-  border-radius: 0.5rem;
-  box-shadow: 0px 0px 7px 3px rgb(57 3 128);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  a {
-    text-decoration: none;
-    color: #fff;
-    text-align: center;
-    font-size: 1.2rem;
-    white-space: pre-line;
-  }
+  ${BlockLink}
 `;

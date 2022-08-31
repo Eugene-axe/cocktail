@@ -1,19 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { INGREDIENTS_URL, INGREDIENTS_SIZE } from "../const";
+import {
+  drink,
+  drinkStatus,
+  fetchRandomDrink,
+} from "../features/drinks/drinksSlice";
 
 export const RecommendationBlock = () => {
+  const dispatch = useDispatch();
+  const randomDrink = useSelector(drink);
+  const fetchStatus = useSelector(drinkStatus);
+  useEffect(() => {
+    if (fetchStatus === "idle") {
+      dispatch(fetchRandomDrink());
+    }
+  }, [fetchStatus, dispatch]);
+  console.log(randomDrink);
+
+  if (!randomDrink.idDrink) return "Laoding ...";
+
   return (
     <Container>
-      <Image>
-        <Title>Lorem, ipsum.</Title>
+      <Image img={randomDrink.strDrinkThumb}>
+        <Title>{randomDrink.strDrink}</Title>
       </Image>
       <IngredientList>
-        {[0, 1, 2, 3, 4].map((item, i) => (
-          <IngredientItem key={i}>
+        {randomDrink.ingredients.map((IAndM) => (
+          <IngredientItem key={IAndM.ingredient + IAndM.measure}>
             <IngredientIcon
-            // style="background-image : url('./1.jpg')"
+              pathImg={`${INGREDIENTS_URL}${IAndM.ingredient}${INGREDIENTS_SIZE.sm}`}
             ></IngredientIcon>
-            <IngredientItemTitle>Lorem, ipsum.1</IngredientItemTitle>
+            <IngredientItemTitle>{IAndM.ingredient}</IngredientItemTitle>
           </IngredientItem>
         ))}
       </IngredientList>
@@ -34,6 +53,7 @@ const Container = styled.article`
 
 const Image = styled.div`
   background: no-repeat center/cover url("./recomended.jpg");
+  background-image: ${({ img }) => `url("${img}")`};
   flex: 1;
   height: 80vw;
   border: 1px solid #fff;
@@ -100,10 +120,11 @@ const IngredientIcon = styled.div`
   margin: 0;
   height: var(--one-side);
   width: var(--one-side);
-  background: no-repeat center/cover;
+  background: no-repeat center/cover #6b4dd8;
+  background-image: ${({ pathImg }) => `url("${pathImg}")`};
   flex-shrink: 0;
   border-radius: 100%;
-  box-shadow: 0px 0px 10px #00bcd4;
+  box-shadow: 0px 0px 10px #6b4dd8;
   @media (min-width: 992px) {
     --one-side: calc(1.2vw + 1.2vh + 2em);
   }
