@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { InnerLink, LineUnderTitle } from "../assets/styled/fragments";
+import { Link } from "react-router-dom";
 import { extractIngredientsAndMeasure } from "../utils";
 
 const ItemDrink = ({ drink }) => {
@@ -10,7 +12,11 @@ const ItemDrink = ({ drink }) => {
     <ListItem>
       <Icon pathImg={extensibleDrink.strDrinkThumb} />
       <InfoBlock>
-        <DrinkTitle>{extensibleDrink.strDrink}</DrinkTitle>
+        <DrinkTitle>
+          <Link to={`/drinks/${extensibleDrink.idDrink}`}>
+            {extensibleDrink.strDrink}
+          </Link>
+        </DrinkTitle>
         <p>{extensibleDrink.strInstructions}</p>
         <Ingredients ingredients={extensibleDrink.ingredients} />
       </InfoBlock>
@@ -21,8 +27,8 @@ const ItemDrink = ({ drink }) => {
 const Ingredients = ({ ingredients }) => {
   return (
     <IngredientsList>
-      {ingredients.map((item) => (
-        <Chips class="ingredients__listitem">{item.ingredient}</Chips>
+      {ingredients.map((item, i) => (
+        <Chips key={item.ingredient + i}>{item.ingredient}</Chips>
       ))}
     </IngredientsList>
   );
@@ -77,17 +83,8 @@ const InfoBlock = styled.section`
 `;
 
 const DrinkTitle = styled.h3`
-  display: inline-block;
-  position: relative;
-  margin: 0;
-  &:after {
-    content: "";
-    border: 1px solid #6f5cdf;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-  }
+  ${LineUnderTitle}
+  ${InnerLink}
 `;
 const IngredientsList = styled.ul`
   list-style-type: none;

@@ -7,7 +7,7 @@ import { ALPHABET } from "../const";
 export const AlphabetPage = () => {
   const renderAlphabet = (alphabet) => {
     return alphabet.map((letter) => (
-      <Item class="alphabet__item" key={letter}>
+      <Item  key={letter}>
         <Link to={`/alphabet/${letter}`}>{letter}</Link>
       </Item>
     ));

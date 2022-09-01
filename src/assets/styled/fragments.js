@@ -15,3 +15,24 @@ export const BlockLink = css`
     align-items: center;
   }
 `;
+
+export const InnerLink = css`
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
+
+export const LineUnderTitle = css`
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  &:after {
+    content: "";
+    border: 1px solid #6f5cdf;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+`;

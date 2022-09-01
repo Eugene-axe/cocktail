@@ -23,7 +23,7 @@ export const DrinksSearchResult = () => {
 
   return (
     <Container>
-      <Header class="search-alphabet__title">{params.letter}</Header>
+      <Header>{params.letter}</Header>
       <FeedDrink drinks={drinksList} />
     </Container>
   );
