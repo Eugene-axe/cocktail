@@ -15,7 +15,6 @@ export const DrinksSearchResult = () => {
   const drinksList = useSelector(drinks);
   const fetchStatus = useSelector(drinkStatus);
   useEffect(() => {
-    if (fetchStatus === "idle")
       dispatch(fetchDrinksByFirstLetter(params.letter));
   });
 

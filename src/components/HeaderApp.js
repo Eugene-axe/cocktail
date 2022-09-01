@@ -48,10 +48,6 @@ const LogoContainer = styled.div`
     width: 300px;
     height: 80px;
   }
-  @media (min-width: 768px) {
-    width: 300px;
-    height: 100px;
-  }
 `;
 
 const Search = styled.div`

@@ -9,6 +9,7 @@ import "./index.css";
 import { AlphabetPage } from "./routes/AlphabetPage";
 import { DrinksSearchResult } from "./routes/DrinksSearchResult";
 import { DrinkPage } from "./routes/DrinkPage";
+import { IngredientsList } from "./routes/IngredientsList";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -23,6 +24,7 @@ root.render(
             <Route path="/alphabet" element={<AlphabetPage />} />
             <Route path="/alphabet/:letter" element={<DrinksSearchResult />} />
             <Route path="/drinks/:idDrink" element={<DrinkPage />} />
+            <Route path="/ingredients" element={<IngredientsList />} />
           </Route>
         </Routes>
       </HashRouter>

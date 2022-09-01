@@ -1,20 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { BlockLink } from "../assets/styled/fragments";
+import { BlockLink, GridOfSquares } from "../assets/styled/fragments";
 import { ALPHABET } from "../const";
 
 export const AlphabetPage = () => {
   const renderAlphabet = (alphabet) => {
     return alphabet.map((letter) => (
-      <Item  key={letter}>
+      <Item key={letter}>
         <Link to={`/alphabet/${letter}`}>{letter}</Link>
       </Item>
     ));
   };
-  return (
-    <Container>{renderAlphabet(ALPHABET)}</Container>
-  );
+  return <Container>{renderAlphabet(ALPHABET)}</Container>;
 };
 
 const Container = styled.ul`
@@ -23,10 +21,7 @@ const Container = styled.ul`
   margin: 0;
   width: 90%;
   margin: 1rem auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-  grid-auto-rows: minmax(50px, 1fr);
-  gap: 1rem;
+  ${GridOfSquares}
   @media (min-width: 768px) {
     grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
     grid-auto-rows: minmax(70px, 1fr);

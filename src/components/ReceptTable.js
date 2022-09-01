@@ -35,6 +35,8 @@ export const ReceptTable = ({ IngredientsAndMeasure }) => {
 
 const Table = styled.table`
   width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
   td {
     text-align: center;
     padding: 0.2rem 0;
@@ -42,7 +44,7 @@ const Table = styled.table`
 `;
 
 const TdPicture = styled.td`
-  --td-side: 15vw;
+  --td-side: 50px;
   border-radius: 0.5rem;
   height: var(--td-side);
   width: var(--td-side);

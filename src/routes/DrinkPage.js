@@ -34,42 +34,93 @@ export const DrinkPage = () => {
     ));
   };
 
-  if (!currentDrink.idDrink) return <div>Loadind ...</div>
+  if (!currentDrink.idDrink) return <div>Loadind ...</div>;
 
   return (
     <Container>
       <DrinkPrevinfo>
         <Icon pathImg={extendedDrink.strDrinkThumb} />
-        <div>
+        <DrinkInfo>
           <DrinkTitle>{extendedDrink.strDrink}</DrinkTitle>
           <ListInfo>{renderListItemsInfo(info)}</ListInfo>
-        </div>
+        </DrinkInfo>
+        <Instruction>{extendedDrink.strInstructions}</Instruction>
       </DrinkPrevinfo>
-      <Instruction>{extendedDrink.strInstructions}</Instruction>
       <Recept>
-        <ReceptTable IngredientsAndMeasure={extendedDrink.ingredients}/>
+        <ReceptTable IngredientsAndMeasure={extendedDrink.ingredients} />
       </Recept>
     </Container>
   );
 };
 
-const Container = styled.article``;
+const Container = styled.article`
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 992px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+`;
 
 const DrinkPrevinfo = styled.section`
-  display: flex;
-  flex-direction: row;
+  flex: 1 0 50%;
+  display: grid;
+  position: relative;
   column-gap: 1rem;
+  grid-template-areas:
+    "info"
+    "icon"
+    "instruction";
+  padding: 1rem;
+  &:after {
+    content: "";
+    border: 1px solid #6f5cdf;
+    width: 90%;
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    @media (min-width: 992px) {
+      bottom: initial;
+      left: initial;
+      top: 5%;
+      right: 0;
+      height: 90%;
+      width: 0%;
+    }
+  }
+  @media (min-width: 330px) {
+    grid-template-areas:
+      "icon info"
+      "instruction instruction";
+    grid-auto-columns: minmax(15px, 300px) minmax(50%, 1fr);
+  }
+  @media (min-width: 660px) {
+    grid-template-areas:
+      "icon info"
+      "icon instruction";
+    grid-auto-columns: minmax(15px, 300px) minmax(40%, 1fr);
+  }
 `;
 
 const Icon = styled.div`
-  flex: 0 1 40vw;
+  grid-area: icon;
   background: no-repeat center/cover;
   background-image: ${({ pathImg }) => `url('${pathImg}')`};
   height: 40vw;
   border: 1px solid #fff;
   border-radius: 0.5rem;
+  @media (min-width: 768px) {
+    height: 300px;
+  }
 `;
 
+const DrinkInfo = styled.div`
+  grid-area: info;
+`;
 const DrinkTitle = styled.h2`
   ${LineUnderTitle}
 `;
@@ -89,10 +140,10 @@ const InfoKey = styled.span`
 const InfoValue = styled.span``;
 
 const Instruction = styled.p`
-  padding: 1rem;
-  ${LineUnderTitle}
+  grid-area: instruction;
 `;
 
 const Recept = styled.section`
+  flex: 1 0 50%;
   padding: 1rem 0;
 `;

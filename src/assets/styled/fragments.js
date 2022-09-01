@@ -36,3 +36,14 @@ export const LineUnderTitle = css`
     left: 0;
   }
 `;
+
+export const GridOfSquares = css`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  grid-auto-rows: minmax(50px, 1fr);
+  gap: 1rem;
+`;
+
+export const backgroundIcon = css`
+  background: no-repeat center / cover;
+`;

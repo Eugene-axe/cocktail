@@ -13,10 +13,8 @@ export const RecommendationBlock = () => {
   const randomDrink = useSelector(drink);
   const fetchStatus = useSelector(drinkStatus);
   useEffect(() => {
-    if (fetchStatus === "idle") {
-      dispatch(fetchRandomDrink());
-    }
-  }, [fetchStatus, dispatch]);
+    dispatch(fetchRandomDrink());
+  }, []);
   console.log(randomDrink);
 
   if (!randomDrink.idDrink) return "Laoding ...";

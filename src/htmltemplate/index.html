@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleIngridients.css">
     <title>Cocktail</title>
 </head>
 
@@ -73,7 +74,7 @@
         <ul class="search-alphabet__list">
         </ul>
     </main>
-    <main class="cocktail-page">
+    <main class="cocktail-page" style="display : none">
         <article class="cocktail-page__container">
             <section class="cocktail-page__previnfo">
                 <div class="cocktail-page__icon"></div>
@@ -94,11 +95,12 @@
                         </li>
                     </ul>
                 </div>
-            </section>
-            <section class="cocktail-page__instruction">Rub the rim of the glass with the lime slice to make the salt
-                stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should
-                present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with
-                ice, then carefully pour into the glass.
+
+                <p class="cocktail-page__instruction">Rub the rim of the glass with the lime slice to make the salt
+                    stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should
+                    present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with
+                    ice, then carefully pour into the glass.
+                </p>
             </section>
             <section class="cocktail-page__recept">
                 <table class="cocktail-page__recept-table">
@@ -136,6 +138,83 @@
                         </tr>
                     </tbody>
                 </table>
+            </section>
+        </article>
+    </main>
+    <main class="ingridients">
+        <article class="ingridients__container">
+            <h2 class="ingridients__header">Ingredients</h2>
+            <ul class="ingredients__list">
+                <li class="ingredients__item">
+                    <a href="#" class="ingredients__link">Light rum</a>
+                </li>
+                <li class="ingredients__item">
+                    <a href="#" class="ingredients__link">Applejack</a>
+                </li>
+                <li class="ingredients__item">
+                    <a href="#" class="ingredients__link">Strawberry schnapps</a>
+                </li>
+                <li class="ingredients__item">
+                    <a href="#" class="ingredients__link">Southern Comfort</a>
+                </li>
+                <li class="ingredients__item">
+                    <a href="#" class="ingredients__link">Carbonated water</a>
+                </li>
+                <li class="ingredients__item">
+                    <a href="#" class="ingredients__link">Midori melon liqueur</a>
+                </li>
+                <li class="ingredients__item">
+                    <a href="#" class="ingredients__link">Peppermint schnapps</a>
+                </li>
+            </ul>
+        </article>
+
+        <section class="ingredient-tooltip">
+            <h3 class="ingredient-tooltip__title">Elderflower cordial</h3>
+            <ul class="ingredient-tooltip__list">
+                <li class="ingredient-tooltip__listitem tooltip_type">
+                    Cordial
+                </li>
+                <li class="ingredient-tooltip__listitem tooltip_alcohol">
+                    Alchol
+                </li>
+                <li class="ingredient-tooltip__listitem tooltip_abv">
+                    null
+                </li>
+                <li class="ingredient-tooltip__listitem tooltip_description">
+                    Elderflower cordial is a soft drink made largely from a refined sugar and water
+                    solution ...
+                </li>
+            </ul>
+        </section>
+    </main>
+    <main class="ingredients-page">
+        <article class="ingredients-page__container">
+            <section class="cocktail-page__previnfo">
+                <div class="cocktail-page__icon"></div>
+                <div class="cocktail-page__info">
+                    <h2 class="cocktail-page__title">Title cocktail</h2>
+                    <ul class="cocktail-page__listinfo">
+                        <li class="cocktail-page__listinfo__item">
+                            <span class="cocktail-page__listinfo__key">Category :</span>
+                            <span class="cocktail-page__listinfo__value">Ordinary Drink</span>
+                        </li>
+                        <li class="cocktail-page__listinfo__item">
+                            <span class="cocktail-page__listinfo__key">Alcoholic :</span>
+                            <span class="cocktail-page__listinfo__value">Alcoholic</span>
+                        </li>
+                        <li class="cocktail-page__listinfo__item">
+                            <span class="cocktail-page__listinfo__key">Glass :</span>
+                            <span class="cocktail-page__listinfo__value">Cocktail glass</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <p class="cocktail-page__instruction">Rub the rim of the glass with the lime slice to make the salt
+                    stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should
+                    present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with
+                    ice, then carefully pour into the glass.
+                </p>
             </section>
         </article>
     </main>
