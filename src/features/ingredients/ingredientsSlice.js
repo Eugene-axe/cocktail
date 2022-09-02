@@ -39,11 +39,10 @@ const ingredientsSlice = createSlice({
   extraReducers(build) {
     build
       .addCase(fetchIngredientsByName.fulfilled, (state, action) => {
-        state.ingredients = action.payload;
+        state.ingredient = action.payload[0];
       })
       .addCase(fetchIngredientById.fulfilled, (state, action) => {
-        console.log(action.payload);
-        state.ingredient = action.payload;
+        state.ingredient = action.payload[0];
       })
       .addCase(fetchAllIngredients.fulfilled, (state, action) => {
         state.ingredients = action.payload;

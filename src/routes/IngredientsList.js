@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { BlockLink, GridOfSquares } from "../assets/styled/fragments";
@@ -6,27 +6,45 @@ import { INGREDIENTS_SIZE, INGREDIENTS_URL } from "../const";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllIngredients,
+  fetchIngredientsByName,
   ingredients,
 } from "../features/ingredients/ingredientsSlice";
+import { TooltipIngredients } from "../components/TootipIngredients";
 
 export const IngredientsList = () => {
   const dispatch = useDispatch();
   const ingredientsList = useSelector(ingredients);
+  const [isHideTooltip, setIsHideTooltip] = useState(false);
+
   useEffect(() => {
     dispatch(fetchAllIngredients());
   }, []);
+
+  const showTooltip = (event, ingredient) => {
+    console.log(ingredient);
+    dispatch(fetchIngredientsByName(ingredient));
+  };
+
   const renderIngredients = (ingredients) => {
-    return ingredients.map((ingredient) => (
+    return ingredients.map((ingredient, i) => (
       <Item
         key={ingredient.strIngredient1}
         pathImg={`${INGREDIENTS_URL}${ingredient.strIngredient1}${INGREDIENTS_SIZE.sm}`}
+        onClick={(e) => showTooltip(e, ingredient.strIngredient1)}
       >
-        <Link to={`/ingredients/${ingredient.strIngredient1}`}>
+        {/* <Link to={`/ingredients/${ingredient.strIngredient1}`}>
           {ingredient.strIngredient1}
-        </Link>
+        </Link> */}
+        <span>{ingredient.strIngredient1}</span>
+        {i === 2 && !isHideTooltip && (
+          <TooltipIngredients name={ingredient.strIngredient1} />
+        )}
       </Item>
     ));
   };
+
+  if (!ingredientsList.length) return <div>Loading...</div>;
+
   return <Container>{renderIngredients(ingredientsList)}</Container>;
 };
 
@@ -63,6 +81,7 @@ const Item = styled.li`
   background-repeat: no-repeat;
   background-color: #5e52a9;
   background-image: ${({ pathImg }) => `url('${pathImg}')`};
+  position: relative;
   @media (min-width: 992px) {
     background-position: top 50% left 50%;
   }
