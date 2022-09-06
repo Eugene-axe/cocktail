@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { BlockLink, LineUnderTitle } from "../assets/styled/fragments";
 import { ingredient } from "../features/ingredients/ingredientsSlice";
 
-export const TooltipIngredients = ({ name, xClick, yClick }) => {
+export const TooltipIngredients = ({ xClick, yClick }) => {
   const tooltip = useRef(null);
   const currentIngredient = useSelector(ingredient);
   useLayoutEffect(() => {
@@ -34,8 +34,9 @@ export const TooltipIngredients = ({ name, xClick, yClick }) => {
     const tooltipHeight = tooltip.current.offsetHeight;
     const windowWidth = document.documentElement.clientWidth;
     const windowHeight = document.documentElement.clientHeight;
-    if (x + tooltipWidth >= windowWidth) x = windowWidth - tooltipWidth -10;
-    if (y + tooltipHeight >= windowHeight) y = windowHeight - tooltipHeight - 10;
+    if (x + tooltipWidth >= windowWidth) x = windowWidth - tooltipWidth - 10;
+    if (y + tooltipHeight >= windowHeight)
+      y = windowHeight - tooltipHeight - 10;
   }
 
   return (
@@ -48,7 +49,9 @@ export const TooltipIngredients = ({ name, xClick, yClick }) => {
         <ItemDescription>{currentDescription || "empty"}</ItemDescription>
       </List>
       <Button>
-        <Link to="/ingredients/:idIngredient">Подробнее</Link>
+        <Link to={`/ingredients/${currentIngredient.strIngredient}`}>
+          Подробнее
+        </Link>
       </Button>
     </Container>
   );

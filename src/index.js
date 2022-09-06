@@ -10,6 +10,7 @@ import { AlphabetPage } from "./routes/AlphabetPage";
 import { DrinksSearchResult } from "./routes/DrinksSearchResult";
 import { DrinkPage } from "./routes/DrinkPage";
 import { IngredientsList } from "./routes/IngredientsList";
+import { IngredientPage } from "./routes/IngredientPage";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -25,6 +26,7 @@ root.render(
             <Route path="/alphabet/:letter" element={<DrinksSearchResult />} />
             <Route path="/drinks/:idDrink" element={<DrinkPage />} />
             <Route path="/ingredients" element={<IngredientsList />} />
+            <Route path="/ingredients/:ingredientName" element={<IngredientPage />} />
           </Route>
         </Routes>
       </HashRouter>

@@ -28,8 +28,7 @@ const ItemList = ({ ingredient }) => {
     const yClick = event.clientY;
     settooltipStartX(xClick);
     settooltipStartY(yClick);
-    console.log(status);
-    if (status === STATUS.SUCCEEDED) setIsHideTooltip(false);
+    setIsHideTooltip(false);
   };
   const hideTooltip = (event) => {
     if (isHideTooltip) return;
@@ -42,7 +41,7 @@ const ItemList = ({ ingredient }) => {
       onMouseLeave={hideTooltip}
     >
       <span>{ingredient.strIngredient1}</span>
-      {!isHideTooltip && (
+      {!isHideTooltip && status === STATUS.SUCCEEDED && (
         <TooltipIngredients
           xClick={tooltipStartX}
           yClick={tooltipStartY}

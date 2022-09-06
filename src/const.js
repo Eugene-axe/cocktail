@@ -4,6 +4,7 @@ export const STATUS = {
   FAILED: " FAILED",
   SUCCEEDED: "SUCCEEDED",
 };
+Object.freeze(STATUS);
 
 export const INGREDIENTS_URL =
   "https://www.thecocktaildb.com/images/ingredients/";
