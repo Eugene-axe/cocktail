@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { INGREDIENTS_SIZE, INGREDIENTS_URL } from "../const";
 
 export const ReceptTable = ({ IngredientsAndMeasure }) => {
-  console.log(IngredientsAndMeasure);
   return (
     <Table>
       <caption>Recept</caption>

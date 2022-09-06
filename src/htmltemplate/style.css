@@ -403,7 +403,7 @@ body {
 }
 
 
-/* .cocktail-page__container {
+.cocktail-page__container {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
@@ -416,9 +416,9 @@ body {
         justify-content: space-between;
         align-items: flex-start;
     }
-} */
+}
 
-/* .cocktail-page__previnfo{
+.cocktail-page__previnfo{
     flex: 1 0 50%;
     display: grid;
     position:relative;
@@ -464,8 +464,8 @@ body {
         height: 90%;
         width: 0%;
     }
-} */
-/* .cocktail-page__icon {
+}
+.cocktail-page__icon {
     grid-area: icon;
     background: no-repeat center/cover url('./recomended.jpg');
     height: 40vw;
@@ -476,10 +476,10 @@ body {
     .cocktail-page__icon {
         height: 300px; 
     }
-} */
-/* .cocktail-page__info {
+}
+.cocktail-page__info {
     grid-area: info;
-} */
+}
 .cocktail-page__title {
     position: relative;
     display: inline-block;
@@ -536,6 +536,7 @@ body {
     width: var(--td-side);
     background: no-repeat center/cover;
     background-image: url('./recomended_50p.jpg');
+    box-sizing: border-box;
     background-clip: padding-box;
     border: 3px solid transparent;
 }

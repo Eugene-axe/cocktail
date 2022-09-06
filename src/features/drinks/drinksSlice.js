@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { STATUS } from "../../const";
 import { extractIngredientsAndMeasure } from "../../utils";
 import {
   getDrinkById,
@@ -58,25 +59,25 @@ const drinksSlice = createSlice({
   extraReducers(build) {
     build
       .addCase(fetchDrinksByName.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = STATUS.SUCCEEDED;
         state.drinks = action.payload;
       })
       .addCase(fetchDrinksByFirstLetter.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = STATUS.SUCCEEDED;
         state.drinks = action.payload;
       })
       .addCase(fetchDrinksByIngredient.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = STATUS.SUCCEEDED;
         state.drinks = action.payload;
       })
       .addCase(fetchDrinkById.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = STATUS.SUCCEEDED;
         const drink = action.payload;
         drink.ingredients = extractIngredientsAndMeasure(drink);
         state.drink = drink;
       })
       .addCase(fetchRandomDrink.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status = STATUS.SUCCEEDED;
         const drink = action.payload;
         drink.ingredients = extractIngredientsAndMeasure(drink);
         state.drink = drink;

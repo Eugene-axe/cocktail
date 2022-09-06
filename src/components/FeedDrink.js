@@ -1,6 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { BorderWhite, InnerLink, LineUnderTitle } from "../assets/styled/fragments";
+import {
+  BorderWhite,
+  IconList,
+  InnerLink,
+  LineUnderTitle,
+} from "../assets/styled/fragments";
 import { Link } from "react-router-dom";
 import { extractIngredientsAndMeasure } from "../utils";
 
@@ -33,6 +38,7 @@ const Ingredients = ({ ingredients }) => {
     </IngredientsList>
   );
 };
+
 export const FeedDrink = ({ drinks }) => {
   return (
     <>
@@ -67,12 +73,10 @@ const ListItem = styled.li`
 `;
 
 const Icon = styled.div`
+  ${IconList}
   --one-side: calc(3vw + 3em);
-  border-radius: 100%;
-  ${BorderWhite}
   height: var(--one-side);
   width: var(--one-side);
-  background: no-repeat center/cover;
   background-image: ${({ pathImg }) => `url(${pathImg}/preview)`};
   flex-shrink: 0;
   margin-right: 1rem;

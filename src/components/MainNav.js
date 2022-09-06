@@ -16,7 +16,7 @@ export const MainNav = () => {
         <Link to="/ingredients">Ингридиенты</Link>
       </NavItem>
       <NavItem>
-        <Link to="glasses">Glasses</Link>
+        <Link to="/creator">Конструктор</Link>
       </NavItem>
     </Nav>
   );

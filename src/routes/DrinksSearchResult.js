@@ -8,6 +8,7 @@ import {
   drinkStatus,
   fetchDrinksByFirstLetter,
 } from "../features/drinks/drinksSlice";
+import { STATUS } from "../const";
 
 export const DrinksSearchResult = () => {
   const params = useParams();
@@ -16,9 +17,9 @@ export const DrinksSearchResult = () => {
   const fetchStatus = useSelector(drinkStatus);
   useEffect(() => {
       dispatch(fetchDrinksByFirstLetter(params.letter));
-  });
+  }, []);
 
-  if (fetchStatus === "idle") return <div>Loadind ...</div>;
+  if (fetchStatus !== STATUS.SUCCEEDED) return <div>Loadind ...</div>;
 
   return (
     <Container>

@@ -1,0 +1,107 @@
+main.create-cocktail {
+    background-color: darkslateblue;
+    flex: 1;
+    color: #fff;
+    padding: 0.5rem;   
+    display: flex;
+    flex-direction: column;
+}
+
+.create-cocktail header {
+    flex: 0 0 30%;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+.creator {
+    display : flex;
+    flex-flow: row nowrap;
+    column-gap: 2rem;
+    max-width: 900px;
+    overflow: hidden;
+}
+.creator__block {
+    border: 1px solid white;
+    flex: 1;
+    border-radius: 1rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.creator__block::-webkit-scrollbar {
+    width: 5px;
+    overflow: hidden;
+}
+.creator__block::-webkit-scrollbar-track {
+    margin: 0.5rem 0;
+}
+.creator__block::-webkit-scrollbar-thumb {
+    background: white;
+    border-top: 15px solid transparent;
+    border-radius: 3rem;
+}
+.creator-item {
+    background-color: rebeccapurple;
+    border: 1px solid #fff;
+    transform: translate( 0px , 0px);
+    /* touch-action: none; */
+    user-select: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.25rem;
+    padding-right: 20px;
+    position: relative;
+}
+.creator-item::after {
+    --one-side: calc(3vw + 1em);
+    content: '➤';
+    width: var(--one-side);
+    height: var(--one-side);
+    position: absolute;
+    right: 5px;
+    color: white;
+    text-align: center;
+    line-height: var(--one-side);
+    text-shadow: 0px 0px 2px #00bcd4;
+    box-shadow: 0px 0px 10px  #00bcd4;
+    border-radius: 100px;
+    background-color: springgreen;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.inside-ingredients__list .creator-item::after{
+    background-color: tomato;
+    transform: rotate(180deg);
+}
+
+
+.outside-ingredients__list, .inside-ingredients__list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    max-height: calc( 100vh - 80px - 120px - 40px);
+
+}
+
+.drag__icon {
+    --one-side: calc(3vw + 2em);
+    border-radius: 100% ;
+    height: var(--one-side);
+    width: var(--one-side);
+    background: no-repeat center/cover;
+    background-image: url('./recomended_50p.jpg');
+    flex-shrink: 0;
+    margin-right: 1rem;
+    margin-left: 0;
+}
+
+.drag__title {
+    margin:0;
+    color: #fff;
+    text-shadow: 0px 0px 10px #00bcd4;
+    font-size: 1.2rem;
+}
+/* https://interactjs.io/ */

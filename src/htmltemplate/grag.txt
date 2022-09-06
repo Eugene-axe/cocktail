@@ -1,0 +1,44 @@
+const outside = document.querySelector('.outside-ingredients__list');
+const inside = document.querySelector('.inside-ingredients__list');
+let outsideArr = ['one', 'two', 'three', 'four', 'five' ,'6','7','8',"9",'10','11','12','13','14','15','16','17'];
+let insideArr = ['six'];
+const lists = [outside, inside];
+let items;
+
+
+const listItemHTML = (title) => (`<li class="creator-item" data-title="${title}" draggable="true">
+<div class="drag__icon"></div>
+<h3 class="drag__title">${title}</h3>
+</li>`)
+
+function renderLists() {
+
+    lists.forEach(list => list.innerHTML = '')
+
+    outsideArr.forEach(title => outside.insertAdjacentHTML('beforeend', listItemHTML(title)))
+
+    insideArr.forEach(title => inside.insertAdjacentHTML('beforeend', listItemHTML(title)))
+
+    items = document.querySelectorAll('.creator-item')
+}
+
+
+renderLists();
+
+lists.forEach(list => {
+    list.addEventListener('dragstart', (e) => {
+        console.log(e.target)
+        e.target.style = 'opacity : 0.5'
+    });
+    list.addEventListener('dragend', (e) => {
+        console.log(e.target)
+        e.target.style = 'opacity : 1'
+        outsideArr = outsideArr.filter(item => item !== e.target.dataset.title)
+        insideArr.push(e.target.dataset.title)
+        renderLists();
+    })
+    list.addEventListener('dragover' , () => {
+        console.log('over');
+        list.classList.add('dragover')
+    })
+})

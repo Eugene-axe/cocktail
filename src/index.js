@@ -11,6 +11,7 @@ import { DrinksSearchResult } from "./routes/DrinksSearchResult";
 import { DrinkPage } from "./routes/DrinkPage";
 import { IngredientsList } from "./routes/IngredientsList";
 import { IngredientPage } from "./routes/IngredientPage";
+import { DrinkCreator } from "./routes/DrinkCreator";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -27,6 +28,7 @@ root.render(
             <Route path="/drinks/:idDrink" element={<DrinkPage />} />
             <Route path="/ingredients" element={<IngredientsList />} />
             <Route path="/ingredients/:ingredientName" element={<IngredientPage />} />
+            <Route path="/creator" element={<DrinkCreator />} />
           </Route>
         </Routes>
       </HashRouter>

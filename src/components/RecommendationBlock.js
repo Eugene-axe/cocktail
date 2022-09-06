@@ -1,22 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { BorderWhite } from "../assets/styled/fragments";
+import { BorderWhite, IconList } from "../assets/styled/fragments";
 import { INGREDIENTS_URL, INGREDIENTS_SIZE } from "../const";
-import {
-  drink,
-  drinkStatus,
-  fetchRandomDrink,
-} from "../features/drinks/drinksSlice";
+import { drink, fetchRandomDrink } from "../features/drinks/drinksSlice";
 
 export const RecommendationBlock = () => {
   const dispatch = useDispatch();
   const randomDrink = useSelector(drink);
-  const fetchStatus = useSelector(drinkStatus);
   useEffect(() => {
     dispatch(fetchRandomDrink());
   }, []);
-  console.log(randomDrink);
 
   if (!randomDrink.idDrink) return "Laoding ...";
 
@@ -115,16 +109,11 @@ const IngredientItemTitle = styled.span`
 `;
 
 const IngredientIcon = styled.div`
+  ${IconList}
   --one-side: calc(1.5vw + 1.5vh + 2.5em);
-  padding: 0;
-  margin: 0;
   height: var(--one-side);
   width: var(--one-side);
-  background: no-repeat center/cover #6b4dd8;
   background-image: ${({ pathImg }) => `url("${pathImg}")`};
-  flex-shrink: 0;
-  border-radius: 100%;
-  ${BorderWhite}
   @media (min-width: 992px) {
     --one-side: calc(1.2vw + 1.2vh + 2em);
   }

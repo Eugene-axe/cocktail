@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styleIngridients.css">
+    <link rel="stylesheet" href="creator.css">
     <title>Cocktail</title>
 </head>
 
@@ -141,7 +142,7 @@
             </section>
         </article>
     </main>
-    <main class="ingridients">
+    <main class="ingridients" style="display : none">
         <article class="ingridients__container">
             <h2 class="ingridients__header">Ingredients</h2>
             <ul class="ingredients__list">
@@ -188,33 +189,47 @@
             </ul>
         </section>
     </main>
-    <main class="ingredients-page">
-        <article class="ingredients-page__container">
+    <main class="ingredient-page" style="display : none">
+        <article class="ingredient-page__container">
             <section class="cocktail-page__previnfo">
                 <div class="cocktail-page__icon"></div>
                 <div class="cocktail-page__info">
                     <h2 class="cocktail-page__title">Title cocktail</h2>
                     <ul class="cocktail-page__listinfo">
                         <li class="cocktail-page__listinfo__item">
-                            <span class="cocktail-page__listinfo__key">Category :</span>
-                            <span class="cocktail-page__listinfo__value">Ordinary Drink</span>
+                            <span class="cocktail-page__listinfo__key">Type :</span>
+                            <span class="cocktail-page__listinfo__value" data-value="strType">Vodka</span>
                         </li>
                         <li class="cocktail-page__listinfo__item">
-                            <span class="cocktail-page__listinfo__key">Alcoholic :</span>
-                            <span class="cocktail-page__listinfo__value">Alcoholic</span>
+                            <span class="cocktail-page__listinfo__key">Alcohol:</span>
+                            <span class="cocktail-page__listinfo__value" data-value="strAlcohol">Yes</span>
                         </li>
                         <li class="cocktail-page__listinfo__item">
-                            <span class="cocktail-page__listinfo__key">Glass :</span>
-                            <span class="cocktail-page__listinfo__value">Cocktail glass</span>
+                            <span class="cocktail-page__listinfo__key">ABV :</span>
+                            <span class="cocktail-page__listinfo__value" data-value="strABV">40</span>
                         </li>
                     </ul>
                 </div>
 
-                <p class="cocktail-page__instruction">Rub the rim of the glass with the lime slice to make the salt
-                    stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should
-                    present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with
-                    ice, then carefully pour into the glass.
+
+                <p class="cocktail-page__description" data-value="strDescription"> yryweyrwyer uadgfjsdha
                 </p>
+            </section>
+        </article>
+    </main>
+    <main class="create-cocktail">
+        <header>
+            <h2>Lorem ipsum dolor sit.<h2>
+                <h4>Lorem ipsum dolor sit amet consectetur.</h4>
+        </header>
+        <article class="creator">
+            <section class="creator__block creator_outside-ingredients">
+                <ul class="outside-ingredients__list dragover">
+                </ul>
+            </section>
+            <section class="creator__block creator_inside-ingredients">
+                <ul class="inside-ingredients__list">
+                </ul>
             </section>
         </article>
     </main>
@@ -224,6 +239,7 @@
     <script src="mocks.js"></script>
     <script src="./script.js"></script>
     <script src="./render.js"></script>
+    <script src="./grag.js"></script>
 </body>
 
 </html>
