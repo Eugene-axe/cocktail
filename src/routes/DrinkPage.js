@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { LineUnderTitle } from "../assets/styled/fragments";
+import { BorderWhite, LineUnderTitle } from "../assets/styled/fragments";
 import { ReceptTable } from "../components/ReceptTable";
 import { drink, fetchDrinkById } from "../features/drinks/drinksSlice";
 import { extractIngredientsAndMeasure } from "../utils";
@@ -111,7 +111,7 @@ const Icon = styled.div`
   background: no-repeat center/cover;
   background-image: ${({ pathImg }) => `url('${pathImg}')`};
   height: 40vw;
-  border: 1px solid #fff;
+  ${BorderWhite}
   border-radius: 0.5rem;
   @media (min-width: 768px) {
     height: 300px;

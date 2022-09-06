@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { BorderWhite } from "../assets/styled/fragments";
 import { INGREDIENTS_URL, INGREDIENTS_SIZE } from "../const";
 import {
   drink,
@@ -54,8 +55,9 @@ const Image = styled.div`
   background-image: ${({ img }) => `url("${img}")`};
   flex: 1;
   height: 80vw;
-  border: 1px solid #fff;
+  ${BorderWhite}
   border-radius: 0.5rem;
+  margin: 3px;
   @media (min-width: 576px) {
     height: 60vh;
   }
@@ -122,7 +124,7 @@ const IngredientIcon = styled.div`
   background-image: ${({ pathImg }) => `url("${pathImg}")`};
   flex-shrink: 0;
   border-radius: 100%;
-  box-shadow: 0px 0px 10px #6b4dd8;
+  ${BorderWhite}
   @media (min-width: 992px) {
     --one-side: calc(1.2vw + 1.2vh + 2em);
   }

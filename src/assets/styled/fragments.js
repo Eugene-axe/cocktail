@@ -3,6 +3,7 @@ import { css } from "styled-components";
 export const BlockLink = css`
   border-radius: 0.5rem;
   box-shadow: 0px 0px 7px 3px rgb(57 3 128);
+  user-select: none;
   a {
     height: 100%;
     display: flex;
@@ -46,4 +47,8 @@ export const GridOfSquares = css`
 
 export const backgroundIcon = css`
   background: no-repeat center / cover;
+`;
+
+export const BorderWhite = css`
+  box-shadow: 0px 0px 1px 3px #fff;
 `;

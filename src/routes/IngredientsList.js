@@ -1,45 +1,69 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { BlockLink, GridOfSquares } from "../assets/styled/fragments";
-import { INGREDIENTS_SIZE, INGREDIENTS_URL } from "../const";
+import { INGREDIENTS_SIZE, INGREDIENTS_URL, STATUS } from "../const";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllIngredients,
-  fetchIngredientsByName,
+  fetchIngredientByName,
   ingredients,
+  ingredientStatus,
 } from "../features/ingredients/ingredientsSlice";
 import { TooltipIngredients } from "../components/TootipIngredients";
+
+const ItemList = ({ ingredient }) => {
+  const dispatch = useDispatch();
+  const status = useSelector(ingredientStatus)
+  const [isHideTooltip, setIsHideTooltip] = useState(true);
+  const [tooltipStartX, settooltipStartX] = useState(10);
+  const [tooltipStartY, settooltipStartY] = useState(10);
+
+  const toggleTooltip = (event, ingredient) => {
+    if (!isHideTooltip) {
+      setIsHideTooltip(true);
+      return;
+    }
+    dispatch(fetchIngredientByName(ingredient));
+    const xClick = event.clientX;
+    const yClick = event.clientY;
+    settooltipStartX(xClick);
+    settooltipStartY(yClick);
+    console.log(status);
+    if (status === STATUS.SUCCEEDED) setIsHideTooltip(false);
+  };
+  const hideTooltip = (event) => {
+    if (isHideTooltip) return;
+    setTimeout(() => setIsHideTooltip(true), 300);
+  };
+  return (
+    <Item
+      pathImg={`${INGREDIENTS_URL}${ingredient.strIngredient1}${INGREDIENTS_SIZE.sm}`}
+      onClick={(e) => toggleTooltip(e, ingredient.strIngredient1)}
+      onMouseLeave={hideTooltip}
+    >
+      <span>{ingredient.strIngredient1}</span>
+      {!isHideTooltip && (
+        <TooltipIngredients
+          xClick={tooltipStartX}
+          yClick={tooltipStartY}
+          name={ingredient.strIngredient1}
+        />
+      )}
+    </Item>
+  );
+};
 
 export const IngredientsList = () => {
   const dispatch = useDispatch();
   const ingredientsList = useSelector(ingredients);
-  const [isHideTooltip, setIsHideTooltip] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAllIngredients());
   }, []);
 
-  const showTooltip = (event, ingredient) => {
-    console.log(ingredient);
-    dispatch(fetchIngredientsByName(ingredient));
-  };
-
   const renderIngredients = (ingredients) => {
     return ingredients.map((ingredient, i) => (
-      <Item
-        key={ingredient.strIngredient1}
-        pathImg={`${INGREDIENTS_URL}${ingredient.strIngredient1}${INGREDIENTS_SIZE.sm}`}
-        onClick={(e) => showTooltip(e, ingredient.strIngredient1)}
-      >
-        {/* <Link to={`/ingredients/${ingredient.strIngredient1}`}>
-          {ingredient.strIngredient1}
-        </Link> */}
-        <span>{ingredient.strIngredient1}</span>
-        {i === 2 && !isHideTooltip && (
-          <TooltipIngredients name={ingredient.strIngredient1} />
-        )}
-      </Item>
+      <ItemList ingredient={ingredient} key={ingredient.strIngredient1} />
     ));
   };
 
@@ -74,8 +98,13 @@ const Container = styled.ul`
 
 const Item = styled.li`
   ${BlockLink}
-  a {
+  span {
+    height: 100%;
+    display: flex;
+    justify-content: center;
     align-items: flex-end;
+    padding-bottom: 1rem;
+    text-align: center;
   }
   background-position: top 25% left 50%;
   background-repeat: no-repeat;

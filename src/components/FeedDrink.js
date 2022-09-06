@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { InnerLink, LineUnderTitle } from "../assets/styled/fragments";
+import { BorderWhite, InnerLink, LineUnderTitle } from "../assets/styled/fragments";
 import { Link } from "react-router-dom";
 import { extractIngredientsAndMeasure } from "../utils";
 
@@ -69,6 +69,7 @@ const ListItem = styled.li`
 const Icon = styled.div`
   --one-side: calc(3vw + 3em);
   border-radius: 100%;
+  ${BorderWhite}
   height: var(--one-side);
   width: var(--one-side);
   background: no-repeat center/cover;

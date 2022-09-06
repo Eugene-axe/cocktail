@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { STATUS } from "../../const";
 import {
   getAllIngredients,
   getIngredientById,
   searchIngredientsByName,
 } from "./ingredientsApi";
 
-export const fetchIngredientsByName = createAsyncThunk(
-  "ingredients/fetchIngredientsByName",
+export const fetchIngredientByName = createAsyncThunk(
+  "ingredients/fetchIngredientByName",
   async (name) => {
     const response = await searchIngredientsByName(name);
     return response;
@@ -38,8 +39,15 @@ const ingredientsSlice = createSlice({
   },
   extraReducers(build) {
     build
-      .addCase(fetchIngredientsByName.fulfilled, (state, action) => {
+      .addCase(fetchIngredientByName.pending, (state, action)=> {
+        state.status = STATUS.PENDING;
+      })
+      .addCase(fetchIngredientByName.fulfilled, (state, action) => {
+        state.status = STATUS.SUCCEEDED;
         state.ingredient = action.payload[0];
+      })
+      .addCase(fetchIngredientById.pending, (state, action)=> {
+        state.status = STATUS.PENDING;
       })
       .addCase(fetchIngredientById.fulfilled, (state, action) => {
         state.ingredient = action.payload[0];
