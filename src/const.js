@@ -1,8 +1,8 @@
 export const STATUS = {
-  IDLE: "IDLE",
-  PENDING: "PENDING",
-  FAILED: " FAILED",
-  SUCCEEDED: "SUCCEEDED",
+  IDLE: "idle",
+  PENDING: "pending",
+  FAILED: " failed",
+  SUCCEEDED: "succeeded",
 };
 Object.freeze(STATUS);
 

@@ -33,6 +33,25 @@ export const fetchDrinksByIngredient = createAsyncThunk(
   }
 );
 
+export const fetchDrinksByManyIngredients = createAsyncThunk(
+  "drink/fetchDrinksByManyIngredients",
+  async (ingredients) => {
+    console.log({ ingredients });
+    if (!ingredients.length) return [];
+    const requests = ingredients.map(async (ingredient) => {
+      const response = await getDrinksByIngredient(ingredient);
+      return response;
+    });
+    const response = await Promise.all(requests);
+    const intersectionDrinksIds = response.reduce((acc, arrayDrinks) =>
+      acc.filter((drink) =>
+        arrayDrinks.find((drink2) => drink.idDrink === drink2.idDrink)
+      )
+    );
+    return intersectionDrinksIds;
+  }
+);
+
 export const fetchDrinkById = createAsyncThunk(
   "drinks/fetchDrinkById",
   async (id) => {
@@ -81,6 +100,13 @@ const drinksSlice = createSlice({
         const drink = action.payload;
         drink.ingredients = extractIngredientsAndMeasure(drink);
         state.drink = drink;
+      })
+      .addCase(fetchDrinksByManyIngredients.pending, (state, action) => {
+        state.status = STATUS.IDLE;
+      })
+      .addCase(fetchDrinksByManyIngredients.fulfilled, (state, action) => {
+        state.status = STATUS.SUCCEEDED;
+        state.drinks = action.payload;
       });
   },
 });

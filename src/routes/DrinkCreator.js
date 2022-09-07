@@ -1,39 +1,35 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { Block, LineUnderTitle } from "../assets/styled/fragments";
-import { IngredientAdt } from "../components/IngredientAdt";
+import { BlockLink, LineUnderTitle } from "../assets/styled/fragments";
 import {
   fetchAllIngredients,
   ingredients,
+  ingredientStatus,
 } from "../features/ingredients/ingredientsSlice";
-
-const ItemList = ({ingredient}) => {
-  return (
-    <Item>
-      <IngredientAdt ingredient={ingredient} /> 
-    </Item>
-  );
-};
+import { STATUS } from "../const";
+import { CreatorDnDContainer } from "../components/CreatorDnDContainer";
+import {
+  drinks,
+  drinkStatus,
+  fetchDrinksByManyIngredients,
+} from "../features/drinks/drinksSlice";
+import { Link } from "react-router-dom";
 
 export const DrinkCreator = () => {
   const dispatch = useDispatch();
   const ingredientsList = useSelector(ingredients);
+  const status = useSelector(ingredientStatus);
+  const possibleDrinks = useSelector(drinks);
+  const statusDrinks = useSelector(drinkStatus);
 
   useEffect(() => {
-    if (!ingredientsList.length) {
+    if (status === STATUS.IDLE) {
       dispatch(fetchAllIngredients());
+      dispatch(fetchDrinksByManyIngredients([]));
     }
-  }, []);
+  }, [status, dispatch]);
 
-  const renderIngredients = (ingredients) => {
-    return ingredients.map((ingredient, i) => (
-        <ItemList
-          key={ingredient.strIngredient1 + i}
-          ingredient={ingredient.strIngredient1}
-        />
-    ));
-  };
   if (!ingredientsList.length) return <div>Loading ...</div>;
 
   return (
@@ -45,12 +41,12 @@ export const DrinkCreator = () => {
           из этого может получиться{" "}
         </p>
       </Greeting>
-      <CreatorContainer>
-        <IngredientsList>{renderIngredients(ingredientsList)}</IngredientsList>
-        <IngredientsList>
-          <Item>5698</Item>
-        </IngredientsList>
-      </CreatorContainer>
+      <CreatorDnDContainer ingredients={ingredientsList} />
+      {statusDrinks === STATUS.SUCCEEDED && (
+        <Button>
+          <Link to="/">Можем создать {possibleDrinks.length} напитков </Link>
+        </Button>
+      )}
     </Container>
   );
 };
@@ -69,28 +65,7 @@ const Greeting = styled.section`
     ${LineUnderTitle}
   }
 `;
-const CreatorContainer = styled.section`
-  display: flex;
-  flex-flow: row nowrap;
-  column-gap: 2rem;
-  max-width: 900px;
-  justify-content: space-between;
-  padding: 0 1rem;
-`;
 
-const IngredientsList = styled.ul`
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  ${Block}
-  flex: 1;
-  height: calc(100vh - 100px - 100px - 50px);
-  overflow: auto;
-`;
-
-const Item = styled.li`
-  width: 40vw;
-  max-width: 350px;
-  outline: 1px solid #fff;
-  padding: 0.25rem;
+const Button = styled.div`
+  ${BlockLink}
 `;
