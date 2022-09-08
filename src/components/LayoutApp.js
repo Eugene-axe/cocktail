@@ -20,5 +20,9 @@ export const LayoutApp = () => {
 const Main = styled.main`
   background-color: darkslateblue;
   flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   color: #fff;
 `;
+

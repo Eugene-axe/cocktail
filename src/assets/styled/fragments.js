@@ -12,7 +12,7 @@ export const Block = css`
 
 export const BlockLink = css`
   ${Block}
-  a {
+  a, span {
     height: 100%;
     display: flex;
     text-decoration: none;

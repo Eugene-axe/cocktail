@@ -44,7 +44,13 @@ export const DrinkCreator = () => {
       <CreatorDnDContainer ingredients={ingredientsList} />
       {statusDrinks === STATUS.SUCCEEDED && (
         <Button>
-          <Link to="/">Можем создать {possibleDrinks.length} напитков </Link>
+          {possibleDrinks.length ? (
+            <Link to="/creator-result">
+              Можем создать {possibleDrinks.length} напитков{" "}
+            </Link>
+          ) : (
+            <span>Можем создать {possibleDrinks.length} напитков</span>
+          )}
         </Button>
       )}
     </Container>
@@ -55,6 +61,7 @@ const Container = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 `;
 const Greeting = styled.section`
   text-align: center;
@@ -68,4 +75,10 @@ const Greeting = styled.section`
 
 const Button = styled.div`
   ${BlockLink}
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem;
+  background: darkslateblue;
 `;

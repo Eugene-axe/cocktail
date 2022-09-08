@@ -52,6 +52,7 @@ const IngredientsList = styled.ul`
   height: calc(100vh - 100px - 100px - 50px);
   overflow-x: hidden;
   overflow-y: auto;
+  padding-bottom: 50px;
 `;
 
 const Item = styled.li`
