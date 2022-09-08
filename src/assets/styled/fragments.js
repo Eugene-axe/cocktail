@@ -29,6 +29,9 @@ export const InnerLink = css`
   a {
     text-decoration: none;
     color: inherit;
+    &.active {
+      text-decoration: underline;
+    }
   }
 `;
 

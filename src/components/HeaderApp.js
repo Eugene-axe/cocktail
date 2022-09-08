@@ -1,17 +1,38 @@
-import React from "react";
+import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { HeaderNav } from "./HeaderNav";
 import { LogoIcon } from "./LogoIcon";
 
 export const HeaderApp = () => {
+  const [isShowNav, setIsShowNav] = useState(false);
+  const nav = useRef(null);
+  const btnNav = useRef(null);
+  const handleBtnClick = () => {
+    console.log(isShowNav);
+    setIsShowNav(!isShowNav);
+    !isShowNav && nav.current.focus();
+  };
+
   return (
     <Header>
-      <ButtonMenu>&#9776;</ButtonMenu>
+      <ButtonMenu onClick={handleBtnClick} ref={btnNav}>
+        &#9776;
+      </ButtonMenu>
       <LogoContainer>
-        <LogoIcon />
+        <Link to="/">
+          <LogoIcon />
+        </Link>
       </LogoContainer>
       <Search>
         <SearchInput placeholder="Search..." />
       </Search>
+      <HeaderNav
+        isShow={isShowNav}
+        setIsShow={setIsShowNav}
+        ref={nav}
+        btn={btnNav.current}
+      />
     </Header>
   );
 };
@@ -25,7 +46,12 @@ const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   column-gap: 1rem;
-  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid #fff;
+  z-index: 1;
+  @media (min-width: 576px) {
+    margin-bottom: 2rem;
+  }
 `;
 
 const ButtonMenu = styled.button`
@@ -39,6 +65,10 @@ const ButtonMenu = styled.button`
   outline: none;
   border-radius: 0.5rem;
   box-shadow: 0px 0px 5px 3px #f9b8b8;
+  cursor: pointer;
+  @media (min-width: 576px) {
+    display: none;
+  }
 `;
 
 const LogoContainer = styled.div`
@@ -46,7 +76,8 @@ const LogoContainer = styled.div`
   height: 60px;
   @media (min-width: 576px) {
     width: 300px;
-    height: 80px;
+    height: 90px;
+    z-index: 1;
   }
 `;
 

@@ -11,7 +11,6 @@ export const LayoutApp = () => {
       <Main>
         <Outlet />
       </Main>
-
       <FooterApp />
     </>
   );
@@ -25,4 +24,3 @@ const Main = styled.main`
   margin: 0 auto;
   color: #fff;
 `;
-

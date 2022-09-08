@@ -20,8 +20,16 @@
         <div class="header__search">
             <input type="text" class="header__input" placeholder="Search ...">
         </div>
+        <div class="header__navigation" tabindex="0">
+            <ul class="header__navigation__list">
+                <li class="header__navigation__item"><a href="#">Главная</a></li>
+                <li class="header__navigation__item"><a href="#">Алфавит</a></li>
+                <li class="header__navigation__item"><a href="#">Ингридиенты</a></li>
+                <li class="header__navigation__item"><a href="#">Конструктор</a></li>
+            </ul>
+        </div>
     </header>
-    <main class="main__main" style="display : none">
+    <main class="main__main" style="display1 : none">
         <header class="greeting">
             <h1 class="greeting__header">Lorem, ipsum.</h1>
             <p class="greeting_p">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio laudantium nobis
@@ -217,10 +225,10 @@
             </section>
         </article>
     </main>
-    <main class="create-cocktail">
+    <main class="create-cocktail" style="display : none">
         <header>
             <h2>Lorem ipsum dolor sit.<h2>
-                <h4>Lorem ipsum dolor sit amet consectetur.</h4>
+                    <h4>Lorem ipsum dolor sit amet consectetur.</h4>
         </header>
         <article class="creator">
             <section class="creator__block creator_outside-ingredients">
@@ -233,8 +241,17 @@
             </section>
         </article>
     </main>
-    <footer>
-        <p class="footer__p">Видел я тут что то</p>
+    <footer class="body__footer">
+        <section class="footer__section contacts">
+            <p>2022 <a href="#">github@git</a></p>
+            <p>Стажировка frontend IT-Lad</p>
+        </section>
+        <section class="footer__section logo"><img src="logo.jpg" class="logo__img" /></section>
+        <section class="footer__section support">
+            <h4>Помогли: </h4>
+            <p>API : <a href="#">thecocktaildb</a></p>
+            <p>Logo : <a href="#">logosait</a></p>
+        </section>
     </footer>
     <script src="mocks.js"></script>
     <script src="./script.js"></script>
