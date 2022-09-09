@@ -35,7 +35,7 @@ export const HeaderNav = React.forwardRef(({ isShow, setIsShow, btn }, ref) => {
 const Container = styled.section`
   position: absolute;
   top: 100%;
-  left: ${({ isShow }) => (isShow ? 0 : "-50vw")};
+  left: ${({ isShow }) => (isShow ? 0 : "-80vw")};
   transition: all 0.3s ease;
   @media (min-width: 576px) {
     top: 83%;

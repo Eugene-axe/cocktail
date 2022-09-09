@@ -16,15 +16,19 @@ export const DrinksSearchResult = () => {
   const drinksList = useSelector(drinks);
   const fetchStatus = useSelector(drinkStatus);
   useEffect(() => {
-      dispatch(fetchDrinksByFirstLetter(params.letter));
+    dispatch(fetchDrinksByFirstLetter(params.letter));
   }, []);
 
   if (fetchStatus !== STATUS.SUCCEEDED) return <div>Loadind ...</div>;
 
   return (
-    <Container>
+    <Container> {}
       <Header>{params.letter}</Header>
-      <FeedDrink drinks={drinksList} />
+      {drinksList.length ? (
+        <FeedDrink drinks={drinksList} />
+      ) : (
+        <h3>В базе ничего не найдено :(</h3>
+      )}
     </Container>
   );
 };

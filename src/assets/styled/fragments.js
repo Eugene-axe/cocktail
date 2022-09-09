@@ -12,16 +12,21 @@ export const Block = css`
 
 export const BlockLink = css`
   ${Block}
+  transition: all .2s linear;
+  cursor: pointer;
   a, span {
     height: 100%;
     display: flex;
     text-decoration: none;
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1.2em;
     white-space: pre-line;
     text-align: center;
     justify-content: center;
     align-items: center;
+  }
+  &:hover {
+    background-color: hsl(248, 25%, 25%);
   }
 `;
 
@@ -61,7 +66,7 @@ export const backgroundIcon = css`
 `;
 
 export const IconList = css`
-  ${BorderWhite};
+  box-shadow: 0px 0px 1px 2px #fff;
   border-radius: 500px;
   background: no-repeat center/cover #6b4dd8;
   padding: 0;

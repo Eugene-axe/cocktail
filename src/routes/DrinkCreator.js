@@ -81,4 +81,6 @@ const Button = styled.div`
   transform: translateX(-50%);
   padding: 0.5rem;
   background: darkslateblue;
+  font-size: 0.7rem;
+  box-shadow: 0px 0px 1px 2px #fff;
 `;

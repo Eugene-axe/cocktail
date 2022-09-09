@@ -81,9 +81,12 @@ const drinksSlice = createSlice({
         state.status = STATUS.SUCCEEDED;
         state.drinks = action.payload;
       })
+      .addCase(fetchDrinksByFirstLetter.pending, (state, action) => {
+        state.status = STATUS.IDLE;
+      })
       .addCase(fetchDrinksByFirstLetter.fulfilled, (state, action) => {
         state.status = STATUS.SUCCEEDED;
-        state.drinks = action.payload;
+        state.drinks = action.payload || [];
       })
       .addCase(fetchDrinksByIngredient.fulfilled, (state, action) => {
         state.status = STATUS.SUCCEEDED;

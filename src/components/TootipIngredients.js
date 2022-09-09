@@ -124,5 +124,6 @@ const Button = styled.div`
   display: inline-block;
   align-self: center;
   padding: 0.1rem 0.5rem;
-  font-size: 0.5rem;
+  font-size: 0.6rem;
+  box-shadow: 0px 0px 2px 2px #fff;
 `;

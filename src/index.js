@@ -13,6 +13,7 @@ import { IngredientsList } from "./routes/IngredientsList";
 import { IngredientPage } from "./routes/IngredientPage";
 import { DrinkCreator } from "./routes/DrinkCreator";
 import { CreatorResult } from "./routes/CreatorResult";
+import { NotFound } from "./routes/NotFound";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -33,6 +34,7 @@ root.render(
           />
           <Route path="/creator" element={<DrinkCreator />} />
           <Route path="/creator-result" element={<CreatorResult />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </HashRouter>

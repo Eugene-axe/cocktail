@@ -8,7 +8,7 @@ export const InformationBlock = (props) => {
   const renderListItemsInfo = (info) => {
     return info.map((obj) => (
       <ListInfoItem key={obj.key}>
-        <InfoKey>{obj.key} :</InfoKey>
+        <InfoKey>{obj.key} : </InfoKey>
         <InfoValue>{obj.value}</InfoValue>
       </ListInfoItem>
     ));
@@ -54,9 +54,13 @@ const Icon = styled.div`
   grid-area: icon;
   background: no-repeat center/cover;
   background-image: ${({ pathImg }) => `url('${pathImg}')`};
+  min-height: 200px;
   height: 40vw;
   ${BorderWhite}
   border-radius: 0.5rem;
+  @media (min-width: 330px) {
+    height: 40vw;
+  }
   @media (min-width: 768px) {
     height: 300px;
   }

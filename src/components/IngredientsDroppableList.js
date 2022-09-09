@@ -7,10 +7,11 @@ import { IngredientAdt } from "./IngredientAdt";
 const ItemList = ({ ingredient, index }) => {
   return (
     <Draggable draggableId={ingredient} index={index}>
-      {(provided) => (
+      {(provided, snapshot) => (
         <Item
           {...provided.draggableProps}
           {...provided.dragHandleProps}
+          isDrag={snapshot.isDragging}
           ref={provided.innerRef}
         >
           <IngredientAdt ingredient={ingredient} />
@@ -23,16 +24,16 @@ const ItemList = ({ ingredient, index }) => {
 export const IngredientsDroppableList = ({ ingredientsList, id }) => {
   const renderIngredients = (ingredients) =>
     ingredients.map((ingredient, i) => (
-      <ItemList
-        key={ingredient}
-        ingredient={ingredient}
-        index={i}
-      />
+      <ItemList key={ingredient} ingredient={ingredient} index={i} />
     ));
   return (
     <Droppable droppableId={id}>
-      {(provided) => (
-        <IngredientsList {...provided.droppableProps} ref={provided.innerRef}>
+      {(provided, snapshot) => (
+        <IngredientsList
+          {...provided.droppableProps}
+          isDragOver={snapshot.isDraggingOver}
+          ref={provided.innerRef}
+        >
           {renderIngredients(ingredientsList)}
           {provided.placeholder}
         </IngredientsList>
@@ -53,11 +54,15 @@ const IngredientsList = styled.ul`
   overflow-x: hidden;
   overflow-y: auto;
   padding-bottom: 50px;
+  transition: all 0.1s linear;
+  ${({ isDragOver }) => isDragOver && "box-shadow: 0px 0px 5px 6px #fff"};
 `;
 
 const Item = styled.li`
   width: 100%;
   outline: 1px solid #fff;
   padding: 0.25rem;
-  background-color: darkslateblue;
+  background-color: ${({ isDrag }) => (isDrag ? "hsl(248, 25%, 25%)" : "darkslateblue")};
+  border-radius: ${({ isDrag }) => (isDrag ? "0.5rem" : "0")};
+  transition: all .1s linear;
 `;

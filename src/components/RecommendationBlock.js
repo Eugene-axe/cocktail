@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { BorderWhite, IconList } from "../assets/styled/fragments";
+import { BorderWhite, IconList, InnerLink } from "../assets/styled/fragments";
 import { INGREDIENTS_URL, INGREDIENTS_SIZE } from "../const";
 import { drink, fetchRandomDrink } from "../features/drinks/drinksSlice";
 
@@ -17,7 +18,9 @@ export const RecommendationBlock = () => {
   return (
     <Container>
       <Image img={randomDrink.strDrinkThumb}>
-        <Title>{randomDrink.strDrink}</Title>
+        <Title>
+          <Link to={`/drinks/${randomDrink.idDrink}`}>{randomDrink.strDrink}</Link>
+        </Title>
       </Image>
       <IngredientList>
         {randomDrink.ingredients.map((IAndM) => (
@@ -61,9 +64,9 @@ const Title = styled.h3`
   position: absolute;
   top: 1rem;
   left: 1rem;
-  color: #fff;
   text-shadow: 0px 0px 10px #00bcd4;
   font-size: calc(1rem + 1vw);
+  ${InnerLink}
 `;
 const IngredientList = styled.ul`
   list-style-type: none;
