@@ -14,6 +14,7 @@ import { IngredientPage } from "./routes/IngredientPage";
 import { DrinkCreator } from "./routes/DrinkCreator";
 import { CreatorResult } from "./routes/CreatorResult";
 import { NotFound } from "./routes/NotFound";
+import { SearchResult } from "./routes/SearchResult";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -34,6 +35,7 @@ root.render(
           />
           <Route path="/creator" element={<DrinkCreator />} />
           <Route path="/creator-result" element={<CreatorResult />} />
+          <Route path="/search-result" element={<SearchResult />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

@@ -25,6 +25,19 @@ export const fetchDrinksByFirstLetter = createAsyncThunk(
   }
 );
 
+export const fetchDrinksFromSearch = createAsyncThunk(
+  "drinks/fetchDrinksFromSearch",
+  async (string) => {
+    if (!string) return [];
+    const letter = string[0];
+    if (!/^[a-z]+$/i.test(letter)) return [];
+    const response = await getDrinksByFirstLetter(letter);
+    if (string.length === 1) return response || [];
+    const rest = string.slice(1);
+    return response.filter((drink) => drink.strDrink.includes(rest));
+  }
+);
+
 export const fetchDrinksByIngredient = createAsyncThunk(
   "drinks/fetchDrinksByIngredient",
   async (ingredient) => {
@@ -71,9 +84,11 @@ export const fetchRandomDrink = createAsyncThunk(
 const drinksSlice = createSlice({
   name: "drinks",
   initialState: {
+    resultSearchDrinks: [],
+    searchStatus: STATUS.IDLE,
     drinks: [],
     drink: {},
-    status: "idle",
+    status: STATUS.IDLE,
   },
   extraReducers(build) {
     build
@@ -110,6 +125,13 @@ const drinksSlice = createSlice({
       .addCase(fetchDrinksByManyIngredients.fulfilled, (state, action) => {
         state.status = STATUS.SUCCEEDED;
         state.drinks = action.payload;
+      })
+      .addCase(fetchDrinksFromSearch.pending, (state, action) => {
+        state.searchStatus = STATUS.IDLE;
+      })
+      .addCase(fetchDrinksFromSearch.fulfilled, (state, action) => {
+        state.searchStatus = STATUS.SUCCEEDED;
+        state.resultSearchDrinks = action.payload;
       });
   },
 });
@@ -117,5 +139,7 @@ const drinksSlice = createSlice({
 export default drinksSlice.reducer;
 
 export const drinks = (state) => state.drinks.drinks;
+export const searchDrinks = (state) => state.drinks.resultSearchDrinks;
 export const drink = (state) => state.drinks.drink;
 export const drinkStatus = (state) => state.drinks.status;
+export const searchStatus = (state) => state.drinks.searchStatus;

@@ -13,7 +13,7 @@ export const MainNav = () => {
         <Link to="categories">Категории</Link>
       </NavItem>
       <NavItem>
-        <Link to="/ingredients">Ингридиенты</Link>
+        <Link to="/ingredients">Ингредиенты</Link>
       </NavItem>
       <NavItem>
         <Link to="/creator">Конструктор</Link>

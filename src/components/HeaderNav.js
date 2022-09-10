@@ -22,7 +22,7 @@ export const HeaderNav = React.forwardRef(({ isShow, setIsShow, btn }, ref) => {
           <NavLink to="/alphabet">Алфавит</NavLink>
         </ListItem>
         <ListItem className="header__navigation__item">
-          <NavLink to="/ingredients">Ингридиенты</NavLink>
+          <NavLink to="/ingredients">Ингредиенты</NavLink>
         </ListItem>
         <ListItem className="header__navigation__item">
           <NavLink to="/creator">Конструктор</NavLink>

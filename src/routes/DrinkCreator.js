@@ -37,8 +37,8 @@ export const DrinkCreator = () => {
       <Greeting>
         <h2>Конструктор коктейля</h2>
         <p>
-          Добавляте ингридиенты в правую часть, чтобы мы смогли подсказать что
-          из этого может получиться{" "}
+          Перетаскивайте ингредиенты в правую часть, чтобы мы могли подсказать,
+          что из этого может получиться
         </p>
       </Greeting>
       <CreatorDnDContainer ingredients={ingredientsList} />
@@ -58,6 +58,7 @@ export const DrinkCreator = () => {
 };
 
 const Container = styled.article`
+padding: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;

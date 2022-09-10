@@ -1,17 +1,43 @@
 import React, { useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { STATUS } from "../const";
+import {
+  fetchDrinksFromSearch,
+  searchDrinks,
+  searchStatus,
+} from "../features/drinks/drinksSlice";
 import { HeaderNav } from "./HeaderNav";
 import { LogoIcon } from "./LogoIcon";
 
 export const HeaderApp = () => {
+  const dispatch = useDispatch();
+  const drinks = useSelector(searchDrinks);
+  const statusSearch = useSelector(searchStatus);
   const [isShowNav, setIsShowNav] = useState(false);
+  const [isShowSearchResult, setIsShowSearchResult] = useState(false);
   const nav = useRef(null);
   const btnNav = useRef(null);
+
   const handleBtnClick = () => {
     console.log(isShowNav);
     setIsShowNav(!isShowNav);
     !isShowNav && nav.current.focus();
+  };
+
+  const handleSearchChange = (event) => {
+    const string = event.target.value.trim();
+    dispatch(fetchDrinksFromSearch(string));
+  };
+
+  const handleSearchFocus = (event) => {
+    setIsShowSearchResult(true);
+  };
+  const handleSearchBlur = (event) => {
+    setTimeout(() => setIsShowSearchResult(false), 300);
+    event.target.value = '';
   };
 
   return (
@@ -25,7 +51,17 @@ export const HeaderApp = () => {
         </Link>
       </LogoContainer>
       <Search>
-        <SearchInput placeholder="Search..." />
+        <SearchInput
+          placeholder="Search..."
+          onChange={handleSearchChange}
+          onFocus={handleSearchFocus}
+          onBlur={handleSearchBlur}
+        />
+        {statusSearch === STATUS.SUCCEEDED && isShowSearchResult && (
+          <SearchResult>
+            <Link to="/search-result">{drinks.length} совпадений</Link>
+          </SearchResult>
+        )}
       </Search>
       <HeaderNav
         isShow={isShowNav}
@@ -84,6 +120,7 @@ const LogoContainer = styled.div`
 const Search = styled.div`
   flex: 0 1 50%;
   margin-left: auto;
+  position: relative;
   @media (min-width: 992px) {
     flex-basis: 30%;
   }
@@ -104,4 +141,15 @@ const SearchInput = styled.input`
     transform: translateX(var(--offsetX));
     width: calc(100% - var(--offsetX));
   }
+`;
+
+const SearchResult = styled.div`
+  position: absolute;
+  top: 90%;
+  right: 1%;
+  padding: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  box-shadow: 0px 0px 2px 1px #fff;
+  background-color: #fff;
 `;
