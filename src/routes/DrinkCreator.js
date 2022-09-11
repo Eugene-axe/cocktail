@@ -10,8 +10,8 @@ import {
 import { STATUS } from "../const";
 import { CreatorDnDContainer } from "../components/CreatorDnDContainer";
 import {
-  drinks,
-  drinkStatus,
+  creatorDrinks,
+  creatorStatus,
   fetchDrinksByManyIngredients,
 } from "../features/drinks/drinksSlice";
 import { Link } from "react-router-dom";
@@ -19,16 +19,16 @@ import { Link } from "react-router-dom";
 export const DrinkCreator = () => {
   const dispatch = useDispatch();
   const ingredientsList = useSelector(ingredients);
-  const status = useSelector(ingredientStatus);
-  const possibleDrinks = useSelector(drinks);
-  const statusDrinks = useSelector(drinkStatus);
+  const statusIngredients = useSelector(ingredientStatus);
+  const drinks = useSelector(creatorDrinks);
+  const statusDrinks = useSelector(creatorStatus);
 
   useEffect(() => {
-    if (status === STATUS.IDLE) {
+    if (statusIngredients === STATUS.IDLE) {
       dispatch(fetchAllIngredients());
-      dispatch(fetchDrinksByManyIngredients([]));
     }
-  }, [status, dispatch]);
+    dispatch(fetchDrinksByManyIngredients([]));
+  }, []);
 
   if (!ingredientsList.length) return <div>Loading ...</div>;
 
@@ -44,12 +44,12 @@ export const DrinkCreator = () => {
       <CreatorDnDContainer ingredients={ingredientsList} />
       {statusDrinks === STATUS.SUCCEEDED && (
         <Button>
-          {possibleDrinks.length ? (
+          {drinks.length ? (
             <Link to="/creator-result">
-              Можем создать {possibleDrinks.length} напитков{" "}
+              Можем создать {drinks.length} напитков{" "}
             </Link>
           ) : (
-            <span>Можем создать {possibleDrinks.length} напитков</span>
+            <span>Можем создать {drinks.length} напитков</span>
           )}
         </Button>
       )}
@@ -58,7 +58,7 @@ export const DrinkCreator = () => {
 };
 
 const Container = styled.article`
-padding: 0.5rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;

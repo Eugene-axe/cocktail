@@ -120,11 +120,11 @@ const drinksSlice = createSlice({
         state.drink = drink;
       })
       .addCase(fetchDrinksByManyIngredients.pending, (state, action) => {
-        state.status = STATUS.IDLE;
+        state.statusCreator = STATUS.IDLE;
       })
       .addCase(fetchDrinksByManyIngredients.fulfilled, (state, action) => {
-        state.status = STATUS.SUCCEEDED;
-        state.drinks = action.payload;
+        state.statusCreator = STATUS.SUCCEEDED;
+        state.drinksCreator = action.payload;
       })
       .addCase(fetchDrinksFromSearch.pending, (state, action) => {
         state.searchStatus = STATUS.IDLE;
@@ -140,6 +140,8 @@ export default drinksSlice.reducer;
 
 export const drinks = (state) => state.drinks.drinks;
 export const searchDrinks = (state) => state.drinks.resultSearchDrinks;
+export const creatorDrinks = (state) => state.drinks.drinksCreator;
 export const drink = (state) => state.drinks.drink;
 export const drinkStatus = (state) => state.drinks.status;
 export const searchStatus = (state) => state.drinks.searchStatus;
+export const creatorStatus = (state) => state.drinks.statusCreator;

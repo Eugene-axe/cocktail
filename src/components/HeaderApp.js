@@ -121,6 +121,7 @@ const Search = styled.div`
   flex: 0 1 50%;
   margin-left: auto;
   position: relative;
+  z-index: 2;
   @media (min-width: 992px) {
     flex-basis: 30%;
   }

@@ -54,7 +54,7 @@ const IngredientsList = styled.ul`
   overflow-x: hidden;
   overflow-y: auto;
   padding-bottom: 50px;
-  transition: all 0.1s linear;
+  transition: box-shadow 0.1s linear;
   ${({ isDragOver }) => isDragOver && "box-shadow: 0px 0px 5px 6px #fff"};
   @media (min-width: 578px) {
     height: calc(100vh - 100px - 100px - 100px);
@@ -68,5 +68,5 @@ const Item = styled.li`
   background-color: ${({ isDrag }) =>
     isDrag ? "hsl(248, 25%, 25%)" : "darkslateblue"};
   border-radius: ${({ isDrag }) => (isDrag ? "0.5rem" : "0")};
-  transition: all 0.1s linear;
+  transition: background-color 0.1s linear;
 `;
