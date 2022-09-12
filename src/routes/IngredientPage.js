@@ -8,6 +8,7 @@ import {
 } from "../features/ingredients/ingredientsSlice";
 import { INGREDIENTS_URL, INGREDIENTS_SIZE } from "../const";
 import { InformationBlock } from "../components/InformationBlock";
+import { Loader } from "../components/Loader";
 
 export const IngredientPage = () => {
   const { ingredientName } = useParams();
@@ -25,7 +26,7 @@ export const IngredientPage = () => {
   ];
 
 
-  if (!currentIngredient.idIngredient) return <div>Loadind ...</div>;
+  if (!currentIngredient.idIngredient) return <Loader />;
   const pathImg = `${INGREDIENTS_URL}${currentIngredient.strIngredient}${INGREDIENTS_SIZE.lg}`;
   return (
     <Container>

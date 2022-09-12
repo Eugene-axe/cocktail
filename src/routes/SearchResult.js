@@ -4,12 +4,13 @@ import { FeedDrink } from "../components/FeedDrink";
 import { useSelector } from "react-redux";
 import { searchDrinks, searchStatus } from "../features/drinks/drinksSlice";
 import { STATUS } from "../const";
+import { Loader } from "../components/Loader";
 
 export const SearchResult = () => {
   const drinksList = useSelector(searchDrinks);
   const fetchStatus = useSelector(searchStatus);
 
-  if (fetchStatus !== STATUS.SUCCEEDED) return <div>Loadind ...</div>;
+  if (fetchStatus !== STATUS.SUCCEEDED) return <Loader />;
 
   return (
     <Container>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { InformationBlock } from "../components/InformationBlock";
+import { Loader } from "../components/Loader";
 import { ReceptTable } from "../components/ReceptTable";
 import { drink, fetchDrinkById } from "../features/drinks/drinksSlice";
 import { extractIngredientsAndMeasure } from "../utils";
@@ -26,7 +27,7 @@ export const DrinkPage = () => {
     { key: "Glass", value: extendedDrink.strGlass },
   ];
 
-  if (!currentDrink.idDrink) return <div>Loadind ...</div>;
+  if (!currentDrink.idDrink) return <Loader />;
 
   return (
     <Container>
@@ -71,7 +72,7 @@ const Recept = styled.section`
     position: absolute;
     top: 0;
     left: 5%;
-    @media(min-width: 992px ) {
+    @media (min-width: 992px) {
       width: inherit;
       top: 5%;
       left: 0;

@@ -9,6 +9,7 @@ import {
   fetchDrinksByFirstLetter,
 } from "../features/drinks/drinksSlice";
 import { STATUS } from "../const";
+import { Loader } from "../components/Loader";
 
 export const DrinksSearchResult = () => {
   const params = useParams();
@@ -19,7 +20,7 @@ export const DrinksSearchResult = () => {
     dispatch(fetchDrinksByFirstLetter(params.letter));
   }, []);
 
-  if (fetchStatus !== STATUS.SUCCEEDED) return <div>Loadind ...</div>;
+  if (fetchStatus !== STATUS.SUCCEEDED) return <Loader />;
 
   return (
     <Container> {}

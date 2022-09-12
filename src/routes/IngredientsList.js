@@ -10,6 +10,7 @@ import {
   ingredientStatus,
 } from "../features/ingredients/ingredientsSlice";
 import { TooltipIngredients } from "../components/TootipIngredients";
+import { Loader } from "../components/Loader";
 
 const ItemList = ({ ingredient }) => {
   const dispatch = useDispatch();
@@ -66,7 +67,7 @@ export const IngredientsList = () => {
     ));
   };
 
-  if (!ingredientsList.length) return <div>Loading...</div>;
+  if (!ingredientsList.length) return <Loader />;
 
   return <Container>{renderIngredients(ingredientsList)}</Container>;
 };

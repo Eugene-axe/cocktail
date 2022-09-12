@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
 import { IngredientsDroppableList } from "./IngredientsDroppableList";
@@ -11,6 +11,10 @@ export const CreatorDnDContainer = ({ ingredients }) => {
     ingredients.map((obj) => obj.strIngredient1)
   );
   const [inside, setInside] = useState([]);
+
+  useEffect(() => {
+    dispatch(fetchDrinksByManyIngredients(inside));
+  }, [dispatch, inside]);
 
   const handleDragEnd = (result) => {
     const { source, destination, draggableId } = result;
@@ -28,7 +32,6 @@ export const CreatorDnDContainer = ({ ingredients }) => {
       }
       setOutside(newOutside);
       setInside(newInside);
-      dispatch(fetchDrinksByManyIngredients(newInside));
     }
   };
   return (

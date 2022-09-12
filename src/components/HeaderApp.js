@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { STATUS } from "../const";
 import {
+  clearSearchResult,
   fetchDrinksFromSearch,
   searchDrinks,
   searchStatus,
@@ -22,7 +23,6 @@ export const HeaderApp = () => {
   const btnNav = useRef(null);
 
   const handleBtnClick = () => {
-    console.log(isShowNav);
     setIsShowNav(!isShowNav);
     !isShowNav && nav.current.focus();
   };
@@ -37,7 +37,7 @@ export const HeaderApp = () => {
   };
   const handleSearchBlur = (event) => {
     setTimeout(() => setIsShowSearchResult(false), 300);
-    event.target.value = '';
+    event.target.value = "";
   };
 
   return (

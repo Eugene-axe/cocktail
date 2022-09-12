@@ -2,20 +2,19 @@ import React from "react";
 import styled from "styled-components";
 
 import { FeedDrink } from "../components/FeedDrink";
-import {  useSelector } from "react-redux";
-import {
-  drinks,
-} from "../features/drinks/drinksSlice";
+import { useSelector } from "react-redux";
+import { creatorDrinks } from "../features/drinks/drinksSlice";
+import { Loader } from "../components/Loader";
 
 export const CreatorResult = () => {
-  const drinksList = useSelector(drinks);
+  const drinks = useSelector(creatorDrinks);
 
-  if (!drinksList.length) return <div>Empty data</div>;
+  if (!drinks.length) return <Loader />;
 
   return (
     <Container>
       <Header>Предложенные коктейли</Header>
-      <FeedDrink drinks={drinksList} />
+      <FeedDrink drinks={drinks} />
     </Container>
   );
 };

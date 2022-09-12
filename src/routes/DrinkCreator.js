@@ -14,6 +14,7 @@ import {
   fetchDrinksByManyIngredients,
 } from "../features/drinks/drinksSlice";
 import { Link } from "react-router-dom";
+import { Loader } from "../components/Loader";
 
 export const DrinkCreator = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export const DrinkCreator = () => {
     dispatch(fetchDrinksByManyIngredients([]));
   }, []);
 
-  if (!ingredientsList.length) return <div>Loading ...</div>;
+  if (!ingredientsList.length) return <Loader />;
 
   return (
     <Container>

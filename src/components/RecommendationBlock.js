@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { BorderWhite, IconList, InnerLink } from "../assets/styled/fragments";
 import { INGREDIENTS_URL, INGREDIENTS_SIZE } from "../const";
 import { drink, fetchRandomDrink } from "../features/drinks/drinksSlice";
+import { Loader } from "./Loader";
 
 export const RecommendationBlock = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ export const RecommendationBlock = () => {
     dispatch(fetchRandomDrink());
   }, []);
 
-  if (!randomDrink.idDrink) return "Laoding ...";
+  if (!randomDrink.idDrink) return <Loader />;
 
   return (
     <Container>
