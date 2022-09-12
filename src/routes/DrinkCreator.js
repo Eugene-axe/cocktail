@@ -5,7 +5,6 @@ import { BlockLink, LineUnderTitle } from "../assets/styled/fragments";
 import {
   fetchAllIngredients,
   ingredients,
-  ingredientStatus,
 } from "../features/ingredients/ingredientsSlice";
 import { STATUS } from "../const";
 import { CreatorDnDContainer } from "../components/CreatorDnDContainer";
@@ -19,14 +18,11 @@ import { Link } from "react-router-dom";
 export const DrinkCreator = () => {
   const dispatch = useDispatch();
   const ingredientsList = useSelector(ingredients);
-  const statusIngredients = useSelector(ingredientStatus);
   const drinks = useSelector(creatorDrinks);
   const statusDrinks = useSelector(creatorStatus);
 
   useEffect(() => {
-    if (statusIngredients === STATUS.IDLE) {
-      dispatch(fetchAllIngredients());
-    }
+    dispatch(fetchAllIngredients());
     dispatch(fetchDrinksByManyIngredients([]));
   }, []);
 
