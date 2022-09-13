@@ -2,8 +2,7 @@
 
 Фронтенд-реализация общедоступного API [TheCocktailDB](https://www.thecocktaildb.com/)
 ***
-![image](https://user-images.githubusercontent.com/64367189/189802262-efab224a-97f0-4a70-95ad-3164366bdad0.png)
-
+![image](https://user-images.githubusercontent.com/64367189/189802537-4a53d2e0-cd08-4816-9a9e-422a15168c40.png)
 ***
 
 Ознакомиться с работающим проектом можно здесь [Thing Rating](https://eugene-axe.github.io/cocktail)
