@@ -5,7 +5,7 @@
 ![image](https://user-images.githubusercontent.com/64367189/189802537-4a53d2e0-cd08-4816-9a9e-422a15168c40.png)
 ***
 
-Ознакомиться с работающим проектом можно здесь [Thing Rating](https://eugene-axe.github.io/cocktail)
+Ознакомиться с работающим проектом можно здесь [Liquid-mix](https://eugene-axe.github.io/cocktail)
 
 ***
 
