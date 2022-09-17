@@ -141,11 +141,6 @@ const SearchInput = styled.input`
   padding: 0.5rem;
   box-sizing: border-box;
   transition: all 0.3s ease;
-  ${'' /* &:focus {
-    --offsetX: -15vw;
-    transform: translateX(var(--offsetX));
-    width: calc(100% - var(--offsetX));
-  } */}
 `;
 
 const SearchResult = styled.div`
