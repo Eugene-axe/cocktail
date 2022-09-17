@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { STATUS } from "../const";
 import {
-  clearSearchResult,
   fetchDrinksFromSearch,
   searchDrinks,
   searchStatus,
@@ -19,6 +18,7 @@ export const HeaderApp = () => {
   const statusSearch = useSelector(searchStatus);
   const [isShowNav, setIsShowNav] = useState(false);
   const [isShowSearchResult, setIsShowSearchResult] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
   const nav = useRef(null);
   const btnNav = useRef(null);
 
@@ -34,10 +34,12 @@ export const HeaderApp = () => {
 
   const handleSearchFocus = (event) => {
     setIsShowSearchResult(true);
+    setIsFocus(true);
   };
   const handleSearchBlur = (event) => {
     setTimeout(() => setIsShowSearchResult(false), 300);
     event.target.value = "";
+    setIsFocus(false)
   };
 
   return (
@@ -50,7 +52,7 @@ export const HeaderApp = () => {
           <LogoIcon />
         </Link>
       </LogoContainer>
-      <Search>
+      <Search isFocus={isFocus}>
         <SearchInput
           placeholder="Search..."
           onChange={handleSearchChange}
@@ -122,8 +124,10 @@ const Search = styled.div`
   margin-left: auto;
   position: relative;
   z-index: 2;
+  transition: flex-basis 0.2s ease; 
+  flex-basis: ${({isFocus}) => isFocus ? '70%' : '50%'};
   @media (min-width: 992px) {
-    flex-basis: 30%;
+    flex-basis: ${({isFocus}) => isFocus ? '50%' : '30%'}
   }
 `;
 
@@ -137,11 +141,11 @@ const SearchInput = styled.input`
   padding: 0.5rem;
   box-sizing: border-box;
   transition: all 0.3s ease;
-  &:focus {
+  ${'' /* &:focus {
     --offsetX: -15vw;
     transform: translateX(var(--offsetX));
     width: calc(100% - var(--offsetX));
-  }
+  } */}
 `;
 
 const SearchResult = styled.div`
